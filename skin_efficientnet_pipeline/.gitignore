@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.DS_Store
+.idea/
+dataset/*/*/*
+runs/efficientnet_b0/*
+!runs/.gitkeep

@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Python
+**/.venv/
+**/.venv-tflite/
+**/__pycache__/
+**/*.py[cod]
+
+# Node / Expo
+**/node_modules/
+**/.expo/
+**/dist/
+
+# Environment
+**/.env
+**/.env.*
+!**/.env.example
+
+# ML datasets
+skin_efficientnet_pipeline/dataset/
+
+# Training artifacts
+skin_efficientnet_pipeline/runs/
+
+# Large model files
+**/*.keras
+**/*.tflite
+**/*.pt
+**/*.pth
+
