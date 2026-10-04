@@ -17,7 +17,7 @@ def make_augmentation():
         name="data_augmentation",
     )
 
-def build_model() -> Model:
+def build_model(learning_rate: float = 0.0001) -> Model:
     backbone = tf.keras.applications.EfficientNetB0(
         include_top=False,
         weights="imagenet",
@@ -52,7 +52,7 @@ def build_model() -> Model:
     model = Model(inputs=image, outputs=output, name="acne_efficientnet_b0")
     model.compile(
         optimizer=tf.keras.optimizers.Adam(
-            learning_rate=0.0001,
+            learning_rate=learning_rate,
             beta_1=0.9,
             beta_2=0.999,
             epsilon=1e-7,

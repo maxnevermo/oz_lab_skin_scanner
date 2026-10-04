@@ -23,6 +23,11 @@ def load_splits(
             seed=seed if split == "train" else None,
             color_mode="rgb",
         )
+        ds = ds.map(
+            lambda images, labels: (images, labels),
+            num_parallel_calls=tf.data.AUTOTUNE,
+            deterministic=(split != "train"),
+        )
         datasets[split] = ds.prefetch(tf.data.AUTOTUNE)
 
     return datasets
