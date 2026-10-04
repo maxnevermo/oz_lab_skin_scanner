@@ -46,13 +46,15 @@ class SkinAnalyzer:
 
         return runtime
 
-    def analyze(self, image: Image.Image) -> dict:
+    def preprocess(self, image: Image.Image) -> np.ndarray:
         image = image.convert("RGB")
 
         image_array = np.asarray(image, dtype=np.float32)
         image_array = tf.image.resize(image_array,(150, 150),method="bilinear").numpy()
-        image_array = np.expand_dims(image_array,axis=0)
 
+        return np.expand_dims(image_array, axis=0)
+
+    def infer(self, image_array: np.ndarray) -> dict:
         interpreter, input_index, output_index = self._get_runtime()
 
         interpreter.set_tensor(input_index,image_array)
@@ -78,3 +80,6 @@ class SkinAnalyzer:
             "predicted_class": predicted_class,
             "scores": scores,
         }
+
+    def analyze(self, image: Image.Image) -> dict:
+        return self.infer(self.preprocess(image))
